@@ -23,10 +23,12 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets/",
+                "output": "/assets/",
+                "ignore": ["base/*", "css/*", "js/*"]
               }
             ],
-            "styles": [
+            "styles": [ 
               "src/styles.css"
             ],
             "scripts": [],
@@ -97,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f33e983d-6e9e-4a41-9640-045ee04d20b6"
   }
 }

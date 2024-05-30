@@ -1,0 +1,102 @@
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.relief {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    width: 100%;
+}
+
+.back-button {
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    cursor: pointer; 
+    margin-right: 10px; 
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 10px; 
+}
+  
+
+.header h3 {
+    margin: 0; 
+}
+
+.step-icons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.step-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: lightgray;
+    margin-right: 5px;
+}
+
+.step-icon.active {
+    background-color: green;
+}
+
+.image-container {
+    margin-top: 20px;
+}
+.image-text-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+  
+.piggy-image {
+    margin-right: 10px;
+}
+
+.phone-input {
+    margin-top: 20px;
+}
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 200px;
+}
+
+.keyboard button {
+    flex: 1 0 25%;
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: transparent; 
+    border: none; 
+}
+
+.separator {
+    width: 80%;
+    height: 2px;
+    background-color: rgb(49, 245, 43);
+    margin: 20px 0;
+}
+
+.phone-number-input {
+    width: 80%;
+    padding: 10px;
+    font-size: 24px; 
+    text-align: center;
+    border-radius: 5px; 
+}
+

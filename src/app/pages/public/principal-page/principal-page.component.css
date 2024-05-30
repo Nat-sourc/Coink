@@ -1,0 +1,76 @@
+
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh; 
+    text-align: center;
+}
+
+.container img {
+    margin-top:70px;
+    max-width: 200%;
+    height: auto;
+}
+
+.text-container {
+    margin-top: 20px; 
+}
+
+.coink {
+    font-size: 32px; 
+}
+
+.description-container {
+    margin-top: 10px; 
+   
+}
+
+.description {
+    font-size: 20px;
+    color: rgb(49, 245, 43); 
+    font-weight: bold;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 30px; /* Alinea los botones en la parte inferior */
+    left: 0;
+    right: 0;
+   
+}
+
+.button-wrapper {
+    margin-bottom: 10px; /* Espacio entre los botones */
+}
+
+.buttonRegistrarse {
+    padding: 10px 80px;
+    border-radius: 20px;
+    background-color: rgb(8, 253, 8);
+    border: none;
+    cursor: pointer;
+    color: rgb(19, 82, 19);
+    font-size:20px;
+    transition: background-color 0.3s;
+}
+
+.buttonRegistrarse:hover {
+    background-color: #999;
+}
+
+.buttonIngresa {
+    padding: 10px 100px;
+    border-radius: 20px;
+    background-color: rgb(20, 52, 65);
+    border: none;
+    cursor: pointer;
+    color:white;
+    font-size:20px;
+    transition: background-color 0.3s;
+}
+.buttonIngresa:hover {
+    background-color: #999;
+}

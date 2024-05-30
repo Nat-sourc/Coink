@@ -1,0 +1,38 @@
+
+
+<div class="container">
+    <div class="relief">
+        <div class="header">
+            <button class="back-button" (click)="goBack()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(49, 245, 43)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <h3>NÚMERO CELULAR</h3>
+        </div>
+        <div class="step-icons">
+            <span class="step-icon active"></span>
+            <span class="step-icon"></span>
+            <span class="step-icon"></span>
+        </div>
+    </div>
+    <div class="image-text-container">
+        <img [src]="imageUrl" alt="Piggy Bank" class="piggy-image">
+        <h3><b>Para comenzar, por favor ingresa tu número de celular</b></h3>
+    </div>
+    <div class="separator"></div>
+    <div class="phone-input">
+        <input type="text" placeholder="(XXX-XXXX)" [(ngModel)]="phoneNumber"  class="phone-number-input">
+    </div>
+    <br>
+    <div class="keyboard">
+        @for(digit of digits; track digit){
+            <button (click)="onDigitClick(digit)">{{digit}}</button>
+        }
+        <button (click)="onBackspaceClick()">⌫</button>
+        <button (click)="onDigitClick('0')">0</button>'
+        <button (click)="okey()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM227.3 387.3l184-184c6.2-6.2 6.2-16.4 0-22.6l-22.6-22.6c-6.2-6.2-16.4-6.2-22.6 0L216 308.1l-70.1-70.1c-6.2-6.2-16.4-6.2-22.6 0l-22.6 22.6c-6.2 6.2-6.2 16.4 0 22.6l104 104c6.2 6.2 16.4 6.2 22.6 0z"/></svg></button>
+    </div>
+  </div>
+  
