@@ -1,1 +1,120 @@
-<p>create-user works!</p>
+<div class="container">
+    <div class="relief">
+        <div class="header">
+            <button class="back-button" (click)="goBack()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(49, 245, 43)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <h3>DATOS DE CUENTA</h3>
+        </div>
+        <div class="step-icons">
+            <span class="step-icon active"></span>
+            <span class="step-icon active"></span>
+            <span class="step-icon"></span>
+        </div>
+    </div>
+    <div class="image-text-container">
+        <img [src]="imageUrl" alt="Piggy Bank" class="piggy-image">
+        <div class="text-section">
+            <h3>¿CUÁLES SON TUS DATOS?</h3>
+            <h4>Ahora necesitamos saber algunos datos tuyos</h4>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="card card-primary">
+        <div>
+            <h3>Documento de Identidad</h3>
+        </div>
+        <form [formGroup]="forma" class="form-container">
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Tipo de Documento</label>
+                    <select formControlName="tipoDocumento" class="form-control form-control-lg custom-select" (change)="onChangeTipoDocumento()">
+                        <option [ngValue]="null" disabled>Tipo de documento</option>
+                        <option *ngFor="let type of typeDocument" [ngValue]="type">{{ type.itemName }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Número de Documento</label>
+                    <input type="text" formControlName="numerodeDocumento" class="form-control form-control-lg" placeholder="Número de Documento" />
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Expedición</label>
+                    <input type="date" formControlName="fechaExpedicion" class="form-control form-control-lg" placeholder="Fecha de Expedición" />
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" formControlName="fechadeNacimiento" class="form-control form-control-lg" placeholder="Fecha de Nacimiento" />
+                </div>
+                <div class="form-group">
+                    <label>Género</label>
+                    <select formControlName="genero" class="form-control form-control-lg custom-select">
+                        <option [ngValue]="null" disabled>Género</option>
+                        <option *ngFor="let g of genero" [ngValue]="g">{{ g.itemName }}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <div>
+            <h3>Configura tu cuenta</h3>
+        </div>
+        <form [formGroup]="forma" class="form-container">
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" formControlName="email" class="form-control form-control-lg" [class.error]="forma.get('email')?.invalid && (forma.get('email')?.dirty || forma.get('email')?.touched)" placeholder="Email" />
+                    <div *ngIf="forma.get('email')?.invalid && (forma.get('email')?.dirty || forma.get('email')?.touched)">
+                        <div *ngIf="forma.get('email')?.errors?.['required']" class="advertice">El email es requerido.</div>
+                        <div *ngIf="forma.get('email')?.errors?.['email']" class="advertice">El email no tiene un formato válido.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Email</label>
+                    <input type="email" formControlName="confirmarEmail" class="form-control form-control-lg" [class.error]="forma.get('confirmarEmail')?.invalid && (forma.get('confirmarEmail')?.dirty || forma.get('confirmarEmail')?.touched)" placeholder="Confirmar Email" />
+                    <div *ngIf="forma.get('confirmarEmail')?.invalid && (forma.get('confirmarEmail')?.dirty || forma.get('confirmarEmail')?.touched)">
+                        <div *ngIf="forma.get('confirmarEmail')?.errors?.['required']" class="advertice">La confirmación de email es requerida.</div>
+                        <div *ngIf="forma.get('confirmarEmail')?.errors?.['email']" class="advertice">El email no tiene un formato válido.</div>
+                        <div *ngIf="forma.get('confirmarEmail')?.errors?.['emailNoCoincide']" class="advertice">Los emails no coinciden.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>PIN Enviado</label>
+                    <div class="input-group">
+                        <input formControlName="pinEnviado" type="Password" class="form-control"  placeholder="PIN Enviado" [class.error]="forma.get('pinEnviado')?.invalid && (forma.get('pinEnviado')?.dirty || forma.get('pinEnviado')?.touched)">
+                        <span class="input-group-btn">
+                          <button id="show_password" class="btn btn-success" type="button" (click)="mostrarPassword('pinEnviado')"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                            </svg>
+                          </button>
+                        </span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label>Confirmar PIN</label>
+                    <div class="input-group">
+                        <input type="password" formControlName="confirmarPin" class="form-control" placeholder="Confirmar PIN" [class.error]="forma.get('confirmarPin')?.invalid && (forma.get('confirmarPin')?.dirty || forma.get('confirmarPin')?.touched)" />
+                        <div class="input-group-append">
+                            <button id="show_password" class="btn btn-success" type="button" (click)="mostrarPassword('pinEnviado')"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div *ngIf="forma.get('confirmarPin')?.invalid && (forma.get('confirmarPin')?.dirty || forma.get('confirmarPin')?.touched)">
+                        <div *ngIf="forma.get('confirmarPin')?.errors?.['required']" class="advertice">La confirmación de PIN es requerida.</div>
+                        <div *ngIf="forma.get('confirmarPin')?.errors?.['pinNoCoincide']" class="advertice">Este campo no coincide con el pin</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn btn-success" [disabled]="!forma.valid" (click)="confirm()">Siguiente</button>
+    </div>
+</div>

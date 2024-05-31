@@ -1,0 +1,123 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.relief {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    width: 100%;
+}
+
+.back-button {
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    cursor: pointer; 
+    margin-right: 10px; 
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 10px; 
+}
+
+.header h3 {
+    margin: 0; 
+}
+
+.step-icons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.step-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: lightgray;
+    margin-right: 5px;
+}
+
+.step-icon.active {
+    background-color: green;
+}
+
+.image-text-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.piggy-image {
+    margin-right: 10px;
+}
+
+.separator {
+    width: 80%;
+    height: 2px;
+    background-color: rgb(49, 245, 43);
+    margin: 20px 0;
+}
+
+.text-section {
+    text-align: center;
+}
+
+h4 {
+    color: gray;
+}
+
+.card {
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-primary {
+    padding: 20px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form-control-lg {
+   
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.advertice{
+    color:red
+}
