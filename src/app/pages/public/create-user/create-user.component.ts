@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule,Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Genero, TypeDocument } from "../../../localist/locallist";
-import { ItemList } from "../../../model/local/item-list";
+import { Genero } from "../../../localist/locallist";
+import { ItemIdentify, ItemList } from "../../../model/local/item-list";
+import { ServiceIdentifyService } from '../../../service/service-identify.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-user',
@@ -16,14 +18,15 @@ export class CreateUserComponent implements OnInit{
 
   imageUrl = '/assets/img/log.png';
   public forma: FormGroup = new FormGroup({});
-  public typeDocument: ItemList[] = [];
+  public typeDocument: ItemIdentify[] = [];
   public genero: ItemList[] = [];
+  mostrarPin: boolean = false;
 
-  constructor(private router: Router, private _formBuilder: FormBuilder) { }
+  constructor(private router: Router, private _formBuilder: FormBuilder,private _identifyService: ServiceIdentifyService,) { }
 
   ngOnInit(): void {
-    this.typeDocument = TypeDocument;
-    this.genero = Genero;
+    this.genero=Genero;
+    this.getTypeIdentify();
     this.createForm();
   }
 
@@ -41,6 +44,25 @@ export class CreateUserComponent implements OnInit{
     }, {
       validator: this.validarEmailYPin
     });
+  }
+
+  getTypeIdentify(){
+    this._identifyService.getByTypeIdentify(  )
+      .subscribe({
+        next: (data) =>{ this.showTypeIdentify( data )},
+        error:(error) => {this.displayError( error )}
+      }) ;
+
+  }
+  showTypeIdentify(datos: any){
+    this.typeDocument = datos;
+    
+  
+  }
+
+  displayError(e: Error){
+    Swal.fire({icon: 'error', title: 'Oops...', text: 'Se ha presentado el error:' + e.stack + e.message, footer: 'contacte al administrador'});
+    
   }
 
   validarEmailYPin(group: FormGroup) {
@@ -64,14 +86,8 @@ export class CreateUserComponent implements OnInit{
     return null;
   }
 
-  mostrarPassword(pinControlName: string) {
-    console.log(pinControlName)
-    const pinField = this.forma.get(pinControlName);
-
-    
-    if (pinField instanceof HTMLInputElement) {
-      pinField.type = pinField.type === 'password' ? 'text' : 'password';
-    }
+  mostrarPassword() {
+    this.mostrarPin = !this.mostrarPin;
   }
 
   goBack() {
@@ -82,6 +98,7 @@ export class CreateUserComponent implements OnInit{
 
   }
   confirm(){
-    this.router.navigate(['principalPage']);
+    const numeroDocumento = this.forma.get('numerodeDocumento')?.value;
+    this.router.navigate(['stepFinally/' + numeroDocumento]);
   }
 }

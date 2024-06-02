@@ -1,0 +1,12 @@
+<div class="body">
+    <div class="overlay" *ngIf="showOverlay">
+        <div class="container">
+            <div class="content">
+                <img [src]="imageUrl">
+                <h2>¡Bienvenido a Coink!</h2>
+                <p>¡Cuenta creada exitosamente, tu marrano ya está listo para que empieces a ahorrar!</p>
+                <button (click)="continue()" class="button">CONTINUAR</button>
+            </div>
+        </div>
+    </div>
+</div>

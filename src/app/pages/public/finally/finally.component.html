@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="relief">
+        <div class="header">
+            <button class="back-button" (click)="goBack()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(49, 245, 43)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <h3>FINALIZAR</h3>
+        </div>
+        <div class="step-icons">
+            <span class="step-icon active"></span>
+            <span class="step-icon active"></span>
+            <span class="step-icon active"></span>
+        </div>
+    </div>
+    <div class="image-text-container">
+        <img [src]="imageUrl" alt="Piggy Bank" class="piggy-image">
+        <div class="text-section">
+            <h3>ESTAS MUY CERCA DE SER PARTE DE COINK</h3>
+            <h4>Solo es necesario que leas detenidamente el contrato que se encuentra al final de esta pantalla y lo aceptes</h4>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="info">
+        <h3>LO MÁS IMPORTANTE</h3>
+        <h4 class="Parrafo">Para la apertura del Depósito de Bajo Monto en COINK debes ser una persona natural que de acuerdo con nuestra legislación vigente te encuentres en plena capacidad para adquirir derechos y contraer obligaciones.</h4>
+        <h4 class="Parrafo">Abrirás una cuenta COINK de Bajo Monto la cual te permitirá tener un saldo hasta por 8 salarios mínimos en el mes y realizar débitos por el mismo valor. Si deseas sobrepasar estos límites debes solicitarnos la apertura de un Depósito Ordinario COINK Persona Natural.</h4>
+        <h4 class="Parrafo">Solo puedes tener una cuenta COINK de Bajo Monto y podrás utilizar tu dispositivo móvil para consultar tu saldo, tus movimientos, realizar tus transacciones y administrar tu cuenta.</h4>
+        <h4 class="Parrafo">Recuerda que no necesitas saldo mínimo ni monto inicial para su apertura.</h4>
+        <br>
+        <h4 class="Parrafo"><b><u>Lee tu contrato</u></b></h4>
+        <div class="button-container">
+            <input type="checkbox" id="cbox2" [(ngModel)]="isChecked">
+            <label for="cbox2">He leído y acepto el contrato</label>
+            
+        </div>
+        <br>
+        <button type="button" class="button" (click)="confirm()" [disabled]="!isChecked">ACEPTAR</button>
+    </div>
+</div>

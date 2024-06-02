@@ -33,7 +33,7 @@
                     <label>Tipo de Documento</label>
                     <select formControlName="tipoDocumento" class="form-control form-control-lg custom-select" (change)="onChangeTipoDocumento()">
                         <option [ngValue]="null" disabled>Tipo de documento</option>
-                        <option *ngFor="let type of typeDocument" [ngValue]="type">{{ type.itemName }}</option>
+                        <option *ngFor="let type of typeDocument" [ngValue]="type">{{ type.description }}</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -82,35 +82,39 @@
                 <div class="form-group">
                     <label>PIN Enviado</label>
                     <div class="input-group">
-                        <input formControlName="pinEnviado" type="Password" class="form-control"  placeholder="PIN Enviado" [class.error]="forma.get('pinEnviado')?.invalid && (forma.get('pinEnviado')?.dirty || forma.get('pinEnviado')?.touched)">
-                        <span class="input-group-btn">
-                          <button id="show_password" class="btn btn-success" type="button" (click)="mostrarPassword('pinEnviado')"> 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                            </svg>
-                          </button>
-                        </span>
-                        
+                      <input formControlName="pinEnviado" [type]="mostrarPin ? 'text' : 'password'" class="form-control" placeholder="PIN Enviado" [class.error]="forma.get('pinEnviado')?.invalid && (forma.get('pinEnviado')?.dirty || forma.get('pinEnviado')?.touched)">
+                      <span class="input-group-btn">
+                        <button id="show_password" class="btn btn-success" type="button" (click)="mostrarPassword()"> 
+                          <svg *ngIf="!mostrarPin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                          </svg>
+                          <svg *ngIf="mostrarPin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                            <path d="M13.359 11.238l1.596 1.597a.5.5 0 0 0 .708-.708l-1.597-1.596a7.965 7.965 0 0 0 1.932-4.631C16 8 13 3 8 3 6.534 3 5.156 3.405 3.985 4.075L1.146 1.146a.5.5 0 1 0-.708.708l1.597 1.596a7.965 7.965 0 0 0-1.932 4.631C0 8 3 13 8 13c1.466 0 2.844-.405 4.015-1.075l2.839 2.839a.5.5 0 0 0 .708-.708l-2.839-2.839zm-5.573-1.072a2.5 2.5 0 0 1-3.485-3.485L7.786 10.167zm4.42-6.567a7.965 7.965 0 0 0-3.3-1.292A3.5 3.5 0 0 1 8 9a3.49 3.49 0 0 1-2.291-.896L7.21 6.81a2.5 2.5 0 0 1 3.487 3.487l1.343 1.343a7.967 7.967 0 0 0 2.842-4.573 7.967 7.967 0 0 0-2.847-4.573z"/>
+                          </svg>
+                        </button>
+                      </span>
                     </div>
-                    
                 </div>
                 <div class="form-group">
                     <label>Confirmar PIN</label>
                     <div class="input-group">
-                        <input type="password" formControlName="confirmarPin" class="form-control" placeholder="Confirmar PIN" [class.error]="forma.get('confirmarPin')?.invalid && (forma.get('confirmarPin')?.dirty || forma.get('confirmarPin')?.touched)" />
-                        <div class="input-group-append">
-                            <button id="show_password" class="btn btn-success" type="button" (click)="mostrarPassword('pinEnviado')"> 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                                </svg>
-                            </button>
-                        </div>
+                      <input [type]="mostrarPin ? 'text' : 'password'" formControlName="confirmarPin" class="form-control" placeholder="Confirmar PIN" [class.error]="forma.get('confirmarPin')?.invalid && (forma.get('confirmarPin')?.dirty || forma.get('confirmarPin')?.touched)" />
+                      <div class="input-group-append">
+                        <button id="show_password" class="btn btn-success" type="button" (click)="mostrarPassword()"> 
+                          <svg *ngIf="!mostrarPin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                          </svg>
+                          <svg *ngIf="mostrarPin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                            <path d="M13.359 11.238l1.596 1.597a.5.5 0 0 0 .708-.708l-1.597-1.596a7.965 7.965 0 0 0 1.932-4.631C16 8 13 3 8 3 6.534 3 5.156 3.405 3.985 4.075L1.146 1.146a.5.5 0 1 0-.708.708l1.597 1.596a7.965 7.965 0 0 0-1.932 4.631C0 8 3 13 8 13c1.466 0 2.844-.405 4.015-1.075l2.839 2.839a.5.5 0 0 0 .708-.708l-2.839-2.839zm-5.573-1.072a2.5 2.5 0 0 1-3.485-3.485L7.786 10.167zm4.42-6.567a7.965 7.965 0 0 0-3.3-1.292A3.5 3.5 0 0 1 8 9a3.49 3.49 0 0 1-2.291-.896L7.21 6.81a2.5 2.5 0 0 1 3.487 3.487l1.343 1.343a7.967 7.967 0 0 0 2.842-4.573 7.967 7.967 0 0 0-2.847-4.573z"/>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                     <div *ngIf="forma.get('confirmarPin')?.invalid && (forma.get('confirmarPin')?.dirty || forma.get('confirmarPin')?.touched)">
-                        <div *ngIf="forma.get('confirmarPin')?.errors?.['required']" class="advertice">La confirmación de PIN es requerida.</div>
-                        <div *ngIf="forma.get('confirmarPin')?.errors?.['pinNoCoincide']" class="advertice">Este campo no coincide con el pin</div>
+                      <div *ngIf="forma.get('confirmarPin')?.errors?.['required']" class="advertice">La confirmación de PIN es requerida.</div>
+                      <div *ngIf="forma.get('confirmarPin')?.errors?.['pinNoCoincide']" class="advertice">Este campo no coincide con el pin</div>
                     </div>
                 </div>
             </div>
