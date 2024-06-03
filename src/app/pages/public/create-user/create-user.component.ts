@@ -6,6 +6,7 @@ import { Genero } from "../../../localist/locallist";
 import { ItemIdentify, ItemList } from "../../../model/local/item-list";
 import { ServiceIdentifyService } from '../../../service/service-identify.service';
 import Swal from 'sweetalert2';
+import { UserDataService } from '../../../service/user-data.service';
 
 @Component({
   selector: 'app-create-user',
@@ -22,7 +23,9 @@ export class CreateUserComponent implements OnInit{
   public genero: ItemList[] = [];
   mostrarPin: boolean = false;
 
-  constructor(private router: Router, private _formBuilder: FormBuilder,private _identifyService: ServiceIdentifyService,) { }
+  constructor(private router: Router, private _formBuilder: FormBuilder,
+    private _identifyService: ServiceIdentifyService,
+    private registroService: UserDataService) { }
 
   ngOnInit(): void {
     this.genero=Genero;
@@ -98,7 +101,11 @@ export class CreateUserComponent implements OnInit{
 
   }
   confirm(){
-    const numeroDocumento = this.forma.get('numerodeDocumento')?.value;
-    this.router.navigate(['stepFinally/' + numeroDocumento]);
+    if (this.forma.valid) {
+      this.registroService.setUserData(this.forma.value);
+      const numeroDocumento = this.forma.get('numerodeDocumento')?.value;
+      this.router.navigate(['stepFinally/' + numeroDocumento]);
+    }
+    
   }
 }

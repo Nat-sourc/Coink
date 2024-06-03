@@ -36,14 +36,14 @@
 
 .buttons {
     position: absolute;
-    bottom: 30px; /* Alinea los botones en la parte inferior */
+    bottom: 30px; 
     left: 0;
     right: 0;
    
 }
 
 .button-wrapper {
-    margin-bottom: 10px; /* Espacio entre los botones */
+    margin-bottom: 10px; 
 }
 
 .buttonRegistrarse {

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserDataService } from '../../../service/user-data.service';
 
 @Component({
   selector: 'app-finally',
@@ -9,10 +10,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './finally.component.html',
   styleUrl: './finally.component.css'
 })
-export class FinallyComponent {
-  constructor(private router: Router, private _ar: ActivatedRoute) { }
-  isChecked = false;
-  imageUrl = '/assets/img/pigSecurity.png';
+export class FinallyComponent implements OnInit{
+  constructor(private router: Router, private _ar: ActivatedRoute, private registroService: UserDataService) { }
+  public isChecked = false;
+  public imageUrl = '/assets/img/pigSecurity.png';
+  public userData: any;
+
+
+
+  ngOnInit() {
+    this.userData = this.registroService.getUserData();
+    console.log('User Data:', this.userData);
+  }
 
   goBack() {
     this.router.navigate(['createUser']);
